@@ -19,7 +19,7 @@ const CommonSidebar = ({iconColor}) => {
 						<div className="d-flex align-items-start mb-4">
 							<img className="avatar lg rounded-circle border border-3" src={profile_av} alt="avatar"/>
 							<div className="ms-3 mt-1">
-								<h4 className="mb-0 text-dark title-font">Joshua</h4>
+								<h4 className="mb-0 text-primary title-font">Joshua</h4>
 								<span className="text-muted">Admin</span>
 							</div>
 						</div>

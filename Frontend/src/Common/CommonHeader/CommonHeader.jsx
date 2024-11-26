@@ -64,9 +64,11 @@ const CommonHeader = ( {toggleSidebar} ) => {
                         <path d="M9 12l6 0" />
                         <path d="M15 8l0 8" />
                     </svg> */}
-                    <img className="avatar me-2 img-rounded" src={logo} alt="Logo" />
+                    <img className="me-1" width={80} height={80} src={logo} alt="Logo" 
                     
-                    <span className="fw-bold ps-2 fs-5 d-none d-xl-inline-flex text-blue">ControlHub</span>
+                    />
+                    
+                    <span className="fw-bold ps-1 fs-5 d-none d-xl-inline-flex text-primary">ControlHub</span>
                 </Link>
             </div>
             <form className="dropdown main-search me-md-4 w-100 d-none d-md-inline-flex">
@@ -122,7 +124,7 @@ const CommonHeader = ( {toggleSidebar} ) => {
                             Tobechukwu
                         </a>
                         <a href="#" className="d-flex align-items-center mb-2">
-                            <img className="avatar rounded-circle border border-3 me-2" src={avatar2} alt="avatar" />
+                            <img className="avatar rounded-circle border border-3 me-2 text-blue" src={avatar2} alt="avatar" />
                             Joshua
                         </a>
                         <a href="#" className="d-flex align-items-center mb-2">
@@ -291,7 +293,7 @@ const CommonHeader = ( {toggleSidebar} ) => {
                 <li className="nav-item user ms-3">
                     <a className="dropdown-toggle gray-6 d-flex text-decoration-none align-items-center lh-sm p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="User" data-bs-auto-close="outside">
                         <img className="avatar rounded-circle border border-3" src={profile_av} alt="avatar" />
-                        <span className="ms-2 fs-6 d-none d-sm-inline-flex">Joshua</span>
+                        <span className="ms-2 fs-6 d-none d-sm-inline-flex text-primary">Joshua</span>
                     </a>
                     <UserDropdown/>
                 </li>
