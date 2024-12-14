@@ -84,7 +84,7 @@ const MyProfile = () => {
                             </div>
                         </div>
                         <div className="col-xl-8 col-lg-7">
-                            <h4 className="card-title mb-0">Edit Profile</h4>
+                            <h4 className="card-title mb-0">Edit Profiles</h4>
                             <div className="row g-3 my-3">
                                 <div className="col-md-5">
                                     <label className="form-label small text-muted">Company</label>
