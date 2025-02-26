@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { bodyGradientReducer, borderRadiusReducer, boxLayoutReducer, iconColorReducer, monochromeReducer, strokeReducer, themeModeReducer, themeReducer } from './settingsReducers';
+import authReducer from './authSlice';
 
 const rootReducer = combineReducers({
     themeMode: themeModeReducer,
@@ -9,7 +10,8 @@ const rootReducer = combineReducers({
     monochrome: monochromeReducer,
     borderRadius: borderRadiusReducer,
     iconColor: iconColorReducer,
-    gradientColor: bodyGradientReducer
+    gradientColor: bodyGradientReducer,
+    auth: authReducer
 });
 
 export default rootReducer;

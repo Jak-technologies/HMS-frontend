@@ -1,10 +1,14 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom';
+import { useLocation, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import AdminLayout from './Layout/AdminLayout'
 import AuthLayout from './Layout/AuthLayout';
 import Documentation from './Tuning/Pages/Documentation/Documentation';
+
+import { hasRole } from './Utils/roleUtils';
+import TestLogin from './TestLogin';
+import TestLogout from './TestLogout';
 
 const App = () => {
 
@@ -16,6 +20,7 @@ const App = () => {
   const borderRadius = useSelector((state) => state.borderRadius.borderRadius);
   const iconColor = useSelector((state) => state.iconColor.iconColor);
   const gradientColor = useSelector((state) => state.gradientColor.gradientColor);
+  const { isAuthenticated, roles } = useSelector((state) => state.auth);
 
   const location = useLocation();
   const pathname = location.pathname;
@@ -32,9 +37,22 @@ const App = () => {
 
   const isAuthRoute = authTitleMapping[pathname];
 
+  if (!isAuthenticated && !isAuthRoute) {
+    return <Navigate to="/signin" replace />;
+  }
+
+
+  if (pathname.startsWith('/hotels') && !hasRole(roles, 'admin')) {
+    /* control paths by role
+    used the hotels route for testing
+    */
+    return <Navigate to="/unauthorized" replace />;
+  }
+
   return (
     <>
       {isAuthRoute ? (
+        
         <AuthLayout />
       ) : pathname.startsWith('/docs') ? (
         <Documentation />
@@ -49,6 +67,7 @@ const App = () => {
           iconColor={iconColor}
           gradientColor={gradientColor}
         />
+        
       )}
     </>
   )
