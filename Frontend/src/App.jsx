@@ -43,8 +43,8 @@ const App = () => {
 
 
   if (pathname.startsWith('/hotels') && !hasRole(roles, 'admin')) {
-    /* control paths by role
-    used the hotels route for testing
+    /*  control paths by role
+        used the hotels route for testing
     */
     return <Navigate to="/unauthorized" replace />;
   }
