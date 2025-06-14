@@ -1,5 +1,6 @@
-import React from "react";
-import { Route, Routes as ReactRoutes } from "react-router-dom";
+import React, { useState } from "react";
+import { Route, Routes as ReactRoutes, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Index from "./Partials/Universal/Dashboard/Index";
 import MyProfile from "./Partials/MyProfile/MyProfile";
@@ -83,6 +84,20 @@ import TermsConditions from "./Tuning/FrontPages/TermsConditions/TermsConditions
 import Blog from "./Tuning/Application/Blog/Blog";
 import BlogDetail from "./Tuning/Application/BlogDetail/BlogDetail";
 import SearchPage from "./Tuning/Pages/SearchPage/SearchPage";
+
+const ProtectedRoute = ({ children, requiredRole }) => {
+  const { isAuthenticated, roles } = useSelector((state) => state.auth);
+
+  if (!isAuthenticated) {
+    return <Navigate to="/signin" />;
+  }
+
+  if (requiredRole && !roles.includes(requiredRole)) {
+    return <Navigate to="/unauthorized" />;
+  }
+
+  return children;
+};
 
 const Routes = () => {
   return (
@@ -179,6 +194,17 @@ const Routes = () => {
       
     </ReactRoutes>
   );
+};
+
+const Dashboard = () => {
+    const [successMessage, setSuccessMessage] = useState('');
+
+    return (
+        <div>
+            {successMessage && <div className="success-message">{successMessage}</div>}
+            {/* ...existing code... */}
+        </div>
+    );
 };
 
 export default Routes;

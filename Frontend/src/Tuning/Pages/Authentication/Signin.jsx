@@ -1,31 +1,41 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
-import { useDispatch } from 'react-redux';
-import { simulateLogin } from '../../../Redux/reducers/authActions'; // Adjust the import based on your Redux setup
+import { useDispatch, useSelector } from 'react-redux';
+import { userLogin } from '../../../Redux/reducers/authActions'; // Adjust the import based on your Redux setup
+import { loginStart, loginSuccess, loginFailure } from '../../../Redux/reducers/authSlice';
+import { FaSpinner } from 'react-icons/fa';
 
 const Signin = () => {
     const [username, setUserName] = useState('admin');
     const [password, setPassword] = useState('Sup3rUs3r@@@@@');
     const [error, setError] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { loading, error: authError } = useSelector((state) => state.auth);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Simulate login without API call
-            const user = { username, role: 'admin' };
-            dispatch(simulateLogin(user, 'admin'));
+            dispatch(loginStart());
+            await dispatch(userLogin(username, password));
+            dispatch(loginSuccess({ user: { username }, roles: [] }));
+            setSuccessMessage('Login successful!');
+            setTimeout(() => setSuccessMessage(''), 2000);
             navigate('/');
         } catch (err) {
-            alert('Login failed');
-            setError('Login failed');
+            dispatch(loginFailure('Incorrect username or password'));
+            setErrorMessage('Incorrect username or password');
+            setTimeout(() => setErrorMessage(''), 2000);
         }
     };
 
     return (
         <div className="px-xl-5 px-4 auth-body">
+            {loading && <FaSpinner className="spinner" />}
+            {errorMessage && <div className="error-message text-danger">{errorMessage}</div>}
+            {successMessage && <div className="success-message text-success">{successMessage}</div>}
             <form onSubmit={handleSubmit}>
                 <ul className="row g-3 list-unstyled li_animate">
                     <li className="col-12">
@@ -80,9 +90,9 @@ const Signin = () => {
                     <li className="col-12 text-center">
                         <span className="text-muted d-flex d-sm-inline-flex">
                             New to ControlHub{' '}
-                            {/* <Link className="ms-2" to="/signup" title="">
+                            <Link className="ms-2" to="/signup" title="">
                                 Sign up here
-                            </Link> */}
+                            </Link>
                         </span>
                     </li>
                 </ul>
