@@ -14,7 +14,6 @@ This project is a **Hotel Management System (HMS)** that includes a **React.js f
 4. [Frontend Setup](#frontend-setup)
    - [React.js](#reactjs)
    - [Redux for State Management](#redux-for-state-management)
-   - [Axios for API Calls](#axios-for-api-calls)
 5. [Authentication Flow](#authentication-flow)
 6. [Error Handling](#error-handling)
 7. [Testing and Debugging](#testing-and-debugging)
@@ -43,7 +42,6 @@ This project is a **Hotel Management System (HMS)** that includes a **React.js f
 ### Frontend
 - **React.js**: A JavaScript library for building user interfaces.
 - **Redux**: For state management.
-- **Axios**: For making HTTP requests to the backend API.
 - **React Router DOM**: For client-side routing.
 - **Bootstrap**: For styling and responsive design.
 
@@ -135,31 +133,6 @@ const authSlice = createSlice({
 })
 ```
 
-### Axios for API Calls
-Axios is used to make HTTP requests to the backend API.
-
-#### Key Features:
-- **Interceptors**: Add request/response interceptors for handling tokens and errors.
-- **Base URL**: Configure a base URL for all API requests.
-
-#### Example Code:
-```javascript
-import axios from 'axios';
-
-const axiosInstance = axios.create({
-    baseURL: 'https://hms-j01n.onrender.com',
-    headers: { 'Content-Type': 'application/json' },
-});
-
-axiosInstance.interceptors.request.use((config) => {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-});
-```
-
 ---
 
 ## Authentication Flow
@@ -211,10 +184,4 @@ axiosInstance.interceptors.request.use((config) => {
 - Test API endpoints using **Postman** or **cURL**.
 
 ### Frontend
-- Use browser developer tools (e.g., Chrome DevTools) to inspect network requests and de
-
-
-<h4>note</h4>: 
-/emp/auth/refresh is not yet set in the backend
-
-i enabled CORS in the api and edited the loginview paylod to include user object  
+- Use browser developer tools (e.g., Chrome DevTools) to inspect network requests and debug JavaScript code.

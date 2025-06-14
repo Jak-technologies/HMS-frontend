@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axiosInstance from '../../../AXIOS_CONFIG/axios';
+
 import { useDispatch } from 'react-redux';
 import { simulateLogin } from '../../../Redux/reducers/authActions'; // Adjust the import based on your Redux setup
 
@@ -13,31 +13,14 @@ const Signin = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
-
-            // Call the login API
-            const response = await axiosInstance.post('/emp/auth/login/', {
-                username,
-                password,
-            });
-
-            const { access_token, refresh_token, } = response.data;
-            const user = response.data.data.user
-            const role = response.data.data.role
-            
-            // Save tokens to localStorage
-            localStorage.setItem('access_token', access_token);
-            localStorage.setItem('refresh_token', refresh_token);
-
-            // Update Redux state (if using Redux)
-            dispatch(simulateLogin(user, role));
-
-            // Redirect to the home page
+            // Simulate login without API call
+            const user = { username, role: 'admin' };
+            dispatch(simulateLogin(user, 'admin'));
             navigate('/');
         } catch (err) {
-            alert('Invalid Credentials');
-            setError(err.response?.data?.message || 'Login failed');
+            alert('Login failed');
+            setError('Login failed');
         }
     };
 

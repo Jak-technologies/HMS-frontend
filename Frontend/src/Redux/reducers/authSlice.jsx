@@ -2,10 +2,11 @@
 // manage authentication  states (login and logout)
 import { createSlice } from '@reduxjs/toolkit';
 
+// Temporarily disable authentication logic
 const initialState = {
-    isAuthenticated: false,
-    user: null,
-    roles: [],
+    isAuthenticated: true, // Set to true to bypass login
+    user: { id: 1, name: 'Test User' }, // Mock user data
+    roles: ['user'], // Mock roles
 };
 
 const authSlice = createSlice({

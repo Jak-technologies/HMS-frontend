@@ -7,8 +7,7 @@ import AuthLayout from './Layout/AuthLayout';
 import Documentation from './Tuning/Pages/Documentation/Documentation';
 
 import { hasRole } from './Utils/roleUtils';
-import TestLogin from './TestLogin';
-import TestLogout from './TestLogout';
+
 
 const App = () => {
 
@@ -41,8 +40,10 @@ const App = () => {
     return <Navigate to="/signin" replace />;
   }
 
-
-  if (pathname.startsWith('/hotels') && !hasRole(roles, 'admin')) {
+  // Temporarily bypass role check for hotel routes
+  if (pathname.startsWith('/hotels')) {
+    // Allow access to all hotel routes
+  } else if (pathname.startsWith('/hotels') && !hasRole(roles, 'admin')) {
     /*  control paths by role
         used the hotels route for testing
     */

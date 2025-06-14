@@ -8,7 +8,6 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@yaireo/tagify": "^4.21.2",
-    "axios": "^1.8.2",
     "bootstrap": "^5.3.3",
     "bootstrap-datepicker": "^1.9.0",
     "bootstrap-icons": "^1.11.3",
